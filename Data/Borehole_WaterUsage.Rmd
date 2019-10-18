@@ -1,0 +1,58 @@
+---
+title: "UNHCR Case Study"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Merge Borehole Data with Water Usage Data
+```{r}
+library(tidyverse)
+
+# join borehole and water use data
+borehole_df <- read_csv("BoreholeData_LastAccess_Sep2019.csv")
+waterUse_df <- read_csv("Water_Usage_In_Camps_Most_Recent_Data.csv")
+
+joined_df <- borehole_df %>%
+  left_join(waterUse_df, by = c("Site name" = "LOCATION NAME")) %>%
+  .[,colSums(is.na(.))<nrow(.)]
+
+head(joined_df, 50)
+
+write_csv(joined_df, "borehole_waterUse.csv")
+
+```
+
+````{r}
+
+# filter by countries of interest and select only relevant columns
+
+countries of interest and 
+joined_df_clean <- write_csv(joined_df, "borehole_waterUse.csv") %>%
+  filter(Country == c("Uganda", "India", "Bangladesh", "Nepal", "Chad", 
+                      "Mali", "Niger", "Nigeria", "Somalia", "Kenya", "Ethiopia")) %>%
+  select("Iso3", "Country", "Site name", "Automatic Borehole ID":"Drilling date", 
+         "Depth in m":"Pump depth in m", "Driller's yield in m3/hr":
+           "Date of last water quality control", "Comments", "DATE START":"DATE END",
+         "NUMBER OF PERSONS PER USABLE HANDPUMP / WELL / SPRING":
+           "AVERAGE # LITERS OF POTABLE WATER AVAILABLE PER PERSON PER DAY",
+         "NUMBER OF PERSONS PER TOILET/LATRINE":"REFUGEE POPULATION")
+
+# rename variables
+names(joined_df_clean) <- c("ISo3", "Country", "CampName", "BoreholeID", "LocalBoreholeID", 
+                            "Latitude", "Longitude", "Elevation_m", "Status", "DrillDate",
+                            "Depth_m", "WaterLevelBelowGround_m", "PumpType", "PumpBrand",
+                            "PumpDepth_m", "DrillerYield_m3/hr", "PumpingTime_hr/day", 
+                            "LastWaterQualityControl", "Comments", "record_start", "record_end",
+                            "npersons_per_pump", "npersons_per_water_tap", "nliters_per_person_day",
+                            "npersons_per_toilet", "npersons_per_shower", "npersons_per_hygiene_promoter",
+                            "refugee_pop")
+
+# Export Data
+write_csv(joined_df_clean, "borehole_waterUse_subset.csv")
+
+
+```
+
