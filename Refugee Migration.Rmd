@@ -11,4 +11,10 @@ library(tidyr)
 library(dplyr)
 ```
 
+```{r}
+migration <- read.csv(file.choose(),header=TRUE,check.names=FALSE)
+
+##choose number_refugees_countryoforigon_byyear.csv located in the google doc
+```
+
 
