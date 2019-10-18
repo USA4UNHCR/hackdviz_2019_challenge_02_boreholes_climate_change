@@ -10,12 +10,32 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyr)
 library(dplyr)
 library(rnoaa)
+library(devtools)
+library(tidyverse)
+library(dplyr)
+library(maps)
+library(ggmap)
+library(gganimate)
+library(ggthemes)
+library(ggplot2)
+library(tibble)
+library(lubridate)
+library(gifski)
+library(png)
+library(gganimate)
+library(spdep)
+library(maptools)
+library(rgdal)
+library(spgwr)
+library(ggplot2)
+library(leaflet)
+require(RColorBrewer)
+library(rgdal)
 ```
 
 ```{r}
 migration_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose number_refugees_countryoforigon_byyear.csv located in the google doc
 bore_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose borehold dataset
-
 ```
 
 ```{r}
@@ -26,6 +46,6 @@ settlements_bycountry <- migration_df %>%
 ```
 
 ```{r}
-
+combo <- left_join(settlements_bycountry,bore_df,by = c("Origin" = "Country"))
 ```
 
