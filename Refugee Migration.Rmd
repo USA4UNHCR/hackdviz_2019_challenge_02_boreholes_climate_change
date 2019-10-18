@@ -19,11 +19,10 @@ bore_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose boreho
 ```
 
 ```{r}
-origin_c <- c("Nigeria", "Nepal", "Niger", "Chad", "Chad", "Kenya")
+origin_c <- c("Nigeria", "Nepal", "Niger", "Chad", "Chad", "Kenya", "Uganda", "Mali", "Ethiopia", "Bangladesh", "Somalia")
 
 settlements_bycountry <- migration_df %>%
   filter(Origin == origin_c)
-##somolia, , bangladesh, mali, uganda, , ethiopia 
 ```
 
 ```{r}
