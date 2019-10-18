@@ -31,11 +31,12 @@ library(ggplot2)
 library(leaflet)
 require(RColorBrewer)
 library(rgdal)
+library(plyr)
 ```
 
 ```{r}
 migration_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose number_refugees_countryoforigon_byyear.csv located in the google doc
-bore_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose borehold dataset
+temp <- read.csv(file.choose(),header=TRUE,check.names=FALSE, row.names=NULL) ##choose anomoly dataset
 ```
 
 ```{r}
@@ -43,9 +44,15 @@ origin_c <- c("Nigeria", "Nepal", "Niger", "Chad", "Chad", "Kenya", "Uganda", "M
 
 settlements_bycountry <- migration_df %>%
   filter(Origin == origin_c)
+
+settlements_bycountry$Origin <- tolower(settlements_bycountry$Origin)
 ```
 
 ```{r}
-combo <- left_join(settlements_bycountry,bore_df,by = c("Origin" = "Country"))
+names(temp)[names(temp)=="country"] <- "Origin"
+```
+
+```{r}
+combo <- merge(settlements_bycountry,temp,by = c("Origin", "Year"))
 ```
 
