@@ -9,12 +9,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyr)
 library(dplyr)
+library(rnoaa)
 ```
 
 ```{r}
-migration <- read.csv(file.choose(),header=TRUE,check.names=FALSE)
+migration_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose number_refugees_countryoforigon_byyear.csv located in the google doc
+bore_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose borehold dataset
 
-##choose number_refugees_countryoforigon_byyear.csv located in the google doc
 ```
 
+```{r}
+origin_c <- c("Nigeria", "Nepal", "Niger", "Chad", "Chad", "Kenya")
+
+settlements_bycountry <- migration_df %>%
+  filter(Origin == origin_c)
+##somolia, , bangladesh, mali, uganda, , ethiopia 
+```
+
+```{r}
+
+```
 
