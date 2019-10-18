@@ -1,0 +1,31 @@
+---
+title: "Refugee Migration"
+author: "Julia Bloom"
+date: "October 18, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyr)
+library(dplyr)
+library(rnoaa)
+```
+
+```{r}
+migration_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose number_refugees_countryoforigon_byyear.csv located in the google doc
+bore_df <- read.csv(file.choose(),header=TRUE,check.names=FALSE) ##choose borehold dataset
+
+```
+
+```{r}
+origin_c <- c("Nigeria", "Nepal", "Niger", "Chad", "Chad", "Kenya", "Uganda", "Mali", "Ethiopia", "Bangladesh", "Somalia")
+
+settlements_bycountry <- migration_df %>%
+  filter(Origin == origin_c)
+```
+
+```{r}
+
+```
+
