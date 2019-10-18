@@ -1,0 +1,31 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+	<script type="text/javascript" src="js/d3.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+</head>
+<body onload="siteReady()">
+<header>
+	<h1>Liters Per Person Per Day</h1>
+	<p class="instructions">Please select a Country, then a location.</p>
+	<p class="instructions">Not all loacations have data for multiple months.</p>
+</header>
+<section id="controls">
+	<select id="country">
+	  <option value="uganda">Uganda</option>
+	  <option value="Ghana">Ghana</option>
+	  <option value="mercedes">Iraq</option>
+	  <option value="audi">Bangladesh</option>
+	</select>
+	<select id="camp" disabled>
+	  
+	</select>
+</section>  <!-- End Controls -->
+<section id="graph"></section> <!-- probably just written dynamically by d3 -->
+<footer>
+	<p>Created by <a href='http://bennorskov.com'>Ben Norskov</a> for USA for UNHCR on October 18, 2019 at Parsons School of Design.</p>
+</footer>
+	<script type="text/javascript" src="js/scriptin.js"></script>
+</body>
+</html>
